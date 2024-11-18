@@ -31,7 +31,6 @@ def main_menu():
 
     
 # menu to select an option of likes, shares or comments 
-# For option no. 1 in the 'main_menu' function
 def average_menu():
     flag = True
     while flag:
