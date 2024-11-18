@@ -71,7 +71,7 @@ def total_interaction_menu():
         post_types = ['Image', 'Poll', 'News/update', 'Advertisement']
 
         print("#################################################")
-        print("############## Average Interaction ##############")
+        print("############### Total Interaction ###############")
         print("#################################################")
         print("")
         print("########### Please select an option #############")
@@ -110,22 +110,27 @@ def get_avg_data(avg_choice):
 
 def get_post_interaction_data(post_type):
     df = pd.read_csv("Task4a_data.csv")
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(layout='constrained')
 
 
     # creates new column with total likes, shares and comments for each day
     df['Total Interactions'] = df[['Likes', 'Shares', 'Comments']].sum(axis=1)
-    #print(df.head(5))
     
     # extracts data by post type
     extract_types = df.loc[df['Post Type'] == post_type]
 
     # groups extracted data by date and sums the total interaction by day
     extract = extract_types.groupby(['Date']) ['Total Interactions'].sum()
-    print(extract)
+
+    print(f'Here is the total interactions for the {post_type} post type on days they were used:')
+    print(extract.to_string())
         
+    # plotting the graph
     plt.plot(extract, marker='x')
-    plt.title()
+    plt.xticks(rotation=50)
+    plt.xlabel('Date')
+    plt.ylabel('Interactions')
+    plt.title(f'Total interactions for {post_type} post type')
     plt.show()
 
 # main program loop 
@@ -147,6 +152,7 @@ def main():
             flag = False
 
 main()
+
 
 
 
