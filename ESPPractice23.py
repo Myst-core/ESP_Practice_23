@@ -61,10 +61,8 @@ def average_menu():
             return str_choices[choice-1]
 
 
-
+# menu to select an option of each post type
 def total_interaction_menu():
-    df = pd.read_csv("Task4a_data.csv")
-
     flag = True
     while flag:
         
@@ -139,13 +137,19 @@ def main():
     while flag:
         main_menu_choice = main_menu()
 
+        # Avg number of likes, comments or shares over time
         if main_menu_choice == "1":
             avg_choice = average_menu()
             get_avg_data(avg_choice)
             
+        # total number of interactions per post type over time
         elif main_menu_choice == "2":
             post_type = total_interaction_menu()
             get_post_interaction_data(post_type)
+
+        # performance of post type at different times of the day
+        elif main_menu_choice == "3":
+            pass
 
         elif main_menu_choice == 'x':
             print('Exiting...')
